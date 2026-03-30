@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>that16one</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1E3A8A;
+    --blue-mid: #2d52b8;
+    --off-white: #f7f6f3;
+    --charcoal: #111111;
+    --gray: #888;
+    --light-gray: #e0deda;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--charcoal);
+    text-transform: lowercase;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+  }
+
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 48px 100px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 40px;
+  }
+
+  .hero-h1 {
+    font-size: clamp(52px, 9vw, 140px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--charcoal);
+    max-width: 900px;
+    margin-bottom: 60px;
+  }
+
+  .hero-h1 span {
+    display: block;
+    font-style: italic;
+    color: var(--blue);
+  }
+
+  .hero-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--gray);
+    max-width: 320px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 18px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover { background: var(--blue-mid); }
+
+  .divider { width: 100%; height: 1px; background: var(--light-gray); }
+
+  .waitlist-section {
+    padding: 100px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1100px;
+  }
+
+  .waitlist-left h2 {
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .waitlist-left h2 em { font-style: italic; color: var(--blue); }
+
+  .waitlist-left p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+
+  .waitlist-form { display: flex; flex-direction: column; gap: 12px; }
+
+  .waitlist-form input {
+    padding: 18px 24px;
+    border: 1px solid var(--light-gray);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    background: white;
+    outline: none;
+    color: var(--charcoal);
+    transition: border-color 0.2s;
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+
+  .waitlist-form input:focus { border-color: var(--blue); }
+  .waitlist-form input::placeholder { color: #bbb; }
+
+  .form-note { font-size: 12px; color: #bbb; font-weight: 300; }
+  .success-msg { display: none; font-size: 14px; color: var(--blue); padding: 18px 0; }
+
+  .statement-section {
+    background: var(--blue);
+    padding: 120px 48px;
+    text-align: center;
+  }
+
+  .statement-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 40px;
+  }
+
+  .statement-text {
+    font-size: clamp(28px, 5vw, 72px);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: white;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .statement-text em { font-style: italic; opacity: 0.6; }
+
+  .info-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--light-gray);
+  }
+
+  .info-cell { background: var(--off-white); padding: 48px 40px; }
+  .info-num { font-size: 11px; font-weight: 500; color: var(--blue); letter-spacing: 0.15em; margin-bottom: 20px; }
+  .info-title { font-size: 18px; font-weight: 400; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .info-desc { font-size: 14px; font-weight: 300; color: var(--gray); line-height: 1.7; }
+
+  footer {
+    padding: 40px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--light-gray);
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo { font-size: 13px; font-weight: 500; letter-spacing: 0.18em; color: var(--charcoal); text-transform: lowercase; }
+  .footer-links { display: flex; gap: 32px; }
+  .footer-links a { font-size: 12px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--blue); }
+  .footer-copy { font-size: 12px; color: #bbb; font-weight: 300; }
+
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 24px; }
+    .hero { padding: 120px 24px 80px; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; }
+    .waitlist-section { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+    .statement-section { padding: 80px 24px; }
+    .info-row { grid-template-columns: 1fr; }
+    .info-cell { padding: 40px 24px; }
+    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">that16one</div>
+  <div class="nav-right">
+    <div class="nav-dot"></div>
+    Coming soon
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">that16one — 2025</div>
+  <h1 class="hero-h1">
+    Built for
+    <span>teen skin.</span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-sub fade-up">Something is coming for teen skin. Be the first to know when we launch.</p>
+    <div class="fade-up">
+      <a href="#waitlist" class="btn-primary">
+        Join the waitlist
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="waitlist">
+  <div class="waitlist-section">
+    <div class="waitlist-left fade-up">
+      <h2>Be the <em>first</em><br>to know.</h2>
+      <p>We're not ready to say more — not yet.<br>But when we launch, you'll want to be on this list.</p>
+    </div>
+    <div class="fade-up">
+      <form class="waitlist-form" onsubmit="handleSubmit(event)">
+        <input type="email" placeholder="your@email.com" required id="email-input">
+        <button type="submit" class="btn-primary">
+          Get early access
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+      <div class="success-msg" id="success-msg">You're on the list. We'll be in touch.</div>
+      <p class="form-note" id="form-note">No spam. Just the launch.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="statement-section">
+  <p class="statement-label">that16one</p>
+  <p class="statement-text fade-up">
+    Real skin.<br>
+    <em>Real confidence.</em>
+  </p>
+</section>
+
+<div class="info-row">
+  <div class="info-cell fade-up">
+    <div class="info-num">01</div>
+    <div class="info-title">For teen skin</div>
+    <div class="info-desc">Designed specifically for young skin. Not a generic product adapted — built from the ground up.</div>
+  </div>
+  <div class="info-cell fade-up" style="transition-delay:0.1s">
+    <div class="info-num">02</div>
+    <div class="info-title">Everyday use</div>
+    <div class="info-desc">Simple enough to use every day. Fast enough to fit into any routine — or no routine at all.</div>
+  </div>
+  <div class="info-cell fade-up" style="transition-delay:0.2s">
+    <div class="info-num">03</div>
+    <div class="info-title">Launching soon</div>
+    <div class="info-desc">We're almost there. Join the waitlist and be part of the first launch.</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">that16one</div>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">© 2025 that16one</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('email-input').value = '';
+    document.querySelector('.waitlist-form').style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+    document.getElementById('form-note').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
